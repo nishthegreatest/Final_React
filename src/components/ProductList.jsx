@@ -35,28 +35,29 @@ const ProductList = () => {
         </h2>
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {product.map((pro) => (
-            <div key={pro.id} className="group relative">
-              <img
-                alt={pro.tittle}
-                src={pro.image}
-                className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
-              />
-              <div className="mt-4 flex justify-between">
-                <div>
-                  <h3 className="text-sm text-gray-700">
-                    <a href={product.href}>
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      {pro.name}
-                    </a>
-                  </h3>
+          {success &&
+            product.map((pro) => (
+              <div key={pro.id} className="group relative">
+                <img
+                  alt={pro.tittle}
+                  src={pro.image}
+                  className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+                />
+                <div className="mt-4 flex justify-between">
+                  <div>
+                    <h3 className="text-sm text-gray-700">
+                      <a href={product.href}>
+                        <span aria-hidden="true" className="absolute inset-0" />
+                        {pro.name}
+                      </a>
+                    </h3>
+                  </div>
+                  <p className="text-sm font-medium text-gray-900">
+                    {pro.price} $
+                  </p>
                 </div>
-                <p className="text-sm font-medium text-gray-900">
-                  {pro.price} $
-                </p>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>

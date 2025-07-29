@@ -21,6 +21,7 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { NavLink } from "react-router-dom";
 
 const navigation = {
   categories: [
@@ -268,25 +269,6 @@ const Appbar = () => {
               ))}
             </div>
 
-            <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-              <div className="flow-root">
-                <a
-                  href="#"
-                  className="-m-2 block p-2 font-medium text-gray-900"
-                >
-                  Sign in
-                </a>
-              </div>
-              <div className="flow-root">
-                <a
-                  href="#"
-                  className="-m-2 block p-2 font-medium text-gray-900"
-                >
-                  Create account
-                </a>
-              </div>
-            </div>
-
             <div className="border-t border-gray-200 px-4 py-6">
               <a href="#" className="-m-2 flex items-center p-2">
                 <img
@@ -434,18 +416,12 @@ const Appbar = () => {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Sign in
-                  </a>
                   <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
                   <a
                     href="#"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
-                    Create account
+                    Logout
                   </a>
                 </div>
 
@@ -477,7 +453,10 @@ const Appbar = () => {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                  <NavLink
+                    to="/cart"
+                    className="group -m-2 flex items-center p-2"
+                  >
                     <ShoppingBagIcon
                       aria-hidden="true"
                       className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
@@ -485,8 +464,7 @@ const Appbar = () => {
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
                       0
                     </span>
-                    <span className="sr-only">items in cart, view bag</span>
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </div>
