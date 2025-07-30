@@ -11,41 +11,59 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
-    <>
-      <AuthProvider>
-        <BrowserRouter>
-          <Appbar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <ProductList />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/detail"
-              element={
-                <ProtectedRoute>
-                  <ProductDetail />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/cart"
-              element={
-                <ProtectedRoute>
-                  <CartPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-          <FootPage />
-        </BrowserRouter>
-      </AuthProvider>
-    </>
+    <AuthProvider>
+      <BrowserRouter>
+        <div className="min-h-screen flex flex-col">
+          {/* Main content area */}
+          <div className="flex-grow">
+            <ProtectedRoute>
+              <Appbar />
+            </ProtectedRoute>
+
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <ProductList />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/category/:categoryName"
+                element={
+                  <ProtectedRoute>
+                    <ProductList />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/detail/:id"
+                element={
+                  <ProtectedRoute>
+                    <ProductDetail />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/cart"
+                element={
+                  <ProtectedRoute>
+                    <CartPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/login" element={<LoginPage />} />
+            </Routes>
+          </div>
+
+          {/* Footer stays at bottom */}
+          <ProtectedRoute>
+            <FootPage />
+          </ProtectedRoute>
+        </div>
+      </BrowserRouter>
+    </AuthProvider>
   );
 };
 
