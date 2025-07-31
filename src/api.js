@@ -1,2 +1,3 @@
 import axios from "axios";
-export default axios.create({ baseURL: "https://fakestoreapi.com" });
+const apiUrl = import.meta.env.VITE_API_URL;
+export default axios.create({ baseURL: apiUrl });
