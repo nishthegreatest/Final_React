@@ -31,7 +31,7 @@ const AppBar = () => {
   return (
     <>
       {/* Spacer to prevent content jump under fixed navbar */}
-      <div className="h-16 lg:h-16" />
+      <div className="h-16" />
 
       <div
         className={`bg-white shadow-sm fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
@@ -39,11 +39,11 @@ const AppBar = () => {
         }`}
       >
         <header className="relative bg-white">
-          <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <nav aria-label="Top" className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8">
             <div className="border-b border-gray-200">
               <div className="flex h-16 items-center">
                 {/* Logo */}
-                <div className="ml-4 flex lg:ml-0">
+                <div className="flex-shrink-0">
                   <a
                     href="/"
                     className="transform transition-transform duration-300 hover:scale-110"
@@ -51,16 +51,16 @@ const AppBar = () => {
                     <img
                       alt="Logo"
                       src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                      className="h-8 w-auto"
+                      className="h-7 w-auto sm:h-8"
                     />
                   </a>
                 </div>
 
-                {/* Categories: show from md screens */}
-                <div className="hidden md:flex md:ml-8 md:space-x-8 md:self-stretch items-center">
+                {/* Categories: show from lg screens */}
+                <div className="hidden lg:flex lg:ml-8 lg:space-x-6 xl:space-x-8 lg:self-stretch items-center">
                   <a
                     href="/"
-                    className="relative text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors duration-300"
+                    className="relative text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors duration-300 group"
                   >
                     Home
                     <span className="absolute left-0 -bottom-1 h-0.5 w-full bg-indigo-600 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
@@ -70,7 +70,7 @@ const AppBar = () => {
                     <a
                       key={idx}
                       href={`/category/${cat}`}
-                      className="relative text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors duration-300"
+                      className="relative text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors duration-300 group"
                     >
                       {cat}
                       <span className="absolute left-0 -bottom-1 h-0.5 w-full bg-indigo-600 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
@@ -78,15 +78,15 @@ const AppBar = () => {
                   ))}
                 </div>
 
-                {/* Desktop right side */}
-                <div className="ml-auto hidden lg:flex items-center space-x-6">
-                  <button className="text-sm font-medium text-gray-700 hover:text-gray-800 transition-colors duration-300">
+                {/* Desktop and tablet right side */}
+                <div className="ml-auto hidden md:flex items-center space-x-3 lg:space-x-4 xl:space-x-6">
+                  <button className="text-sm font-medium text-gray-700 hover:text-gray-800 transition-colors duration-300 hidden lg:block">
                     Logout
                   </button>
 
                   <a
                     href="#"
-                    className="flex items-center text-gray-700 hover:text-gray-800 transition-colors duration-300"
+                    className="flex items-center text-gray-700 hover:text-gray-800 transition-colors duration-300 hidden lg:flex"
                   >
                     <img
                       alt="Canada Flag"
@@ -109,14 +109,25 @@ const AppBar = () => {
                       aria-hidden="true"
                       className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-gray-500 transition-colors duration-300"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800 transition-colors duration-300">
+                    <span className="ml-1 lg:ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800 transition-colors duration-300">
                       0
                     </span>
                   </a>
                 </div>
 
-                {/* Mobile hamburger */}
-                <div className="ml-auto flex lg:hidden">
+                {/* Mobile hamburger - show on small and medium screens */}
+                <div className="ml-auto flex md:hidden">
+                  <button
+                    onClick={() => setMobileMenuOpen(true)}
+                    aria-label="Open menu"
+                    className="p-2 rounded-md text-gray-700 hover:text-indigo-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    <Bars3Icon className="h-6 w-6" />
+                  </button>
+                </div>
+
+                {/* Tablet hamburger - show only on md screens when categories are hidden */}
+                <div className="ml-4 flex md:flex lg:hidden">
                   <button
                     onClick={() => setMobileMenuOpen(true)}
                     aria-label="Open menu"
@@ -140,13 +151,13 @@ const AppBar = () => {
               />
 
               {/* Panel */}
-              <div className="fixed inset-0 z-50 flex flex-col bg-white p-6 overflow-y-auto">
-                <div className="flex items-center justify-between mb-8">
+              <div className="fixed inset-0 z-50 flex flex-col bg-white p-4 sm:p-6 overflow-y-auto">
+                <div className="flex items-center justify-between mb-6 sm:mb-8">
                   <a href="/" className="flex-shrink-0">
                     <img
                       alt="Logo"
                       src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                      className="h-8 w-auto"
+                      className="h-7 w-auto sm:h-8"
                     />
                   </a>
                   <button
@@ -158,10 +169,10 @@ const AppBar = () => {
                   </button>
                 </div>
 
-                <nav className="space-y-6 flex-grow">
+                <nav className="space-y-4 sm:space-y-6 flex-grow">
                   <a
                     href="/"
-                    className="block text-lg font-medium text-gray-700 hover:text-indigo-600"
+                    className="block text-base sm:text-lg font-medium text-gray-700 hover:text-indigo-600 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Home
@@ -170,7 +181,7 @@ const AppBar = () => {
                     <a
                       key={idx}
                       href={`/category/${cat}`}
-                      className="block text-lg font-medium text-gray-700 hover:text-indigo-600"
+                      className="block text-base sm:text-lg font-medium text-gray-700 hover:text-indigo-600 py-2"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {cat}
@@ -178,9 +189,9 @@ const AppBar = () => {
                   ))}
                 </nav>
 
-                <div className="mt-auto space-y-6 mb-12">
+                <div className="mt-auto space-y-4 sm:space-y-6 mb-8 sm:mb-12">
                   <button
-                    className="w-full text-left text-lg font-medium text-gray-700 hover:text-indigo-600"
+                    className="w-full text-left text-base sm:text-lg font-medium text-gray-700 hover:text-indigo-600 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Logout
@@ -188,7 +199,7 @@ const AppBar = () => {
 
                   <a
                     href="#"
-                    className="flex items-center space-x-3 text-gray-700 hover:text-indigo-600"
+                    className="flex items-center space-x-3 text-base sm:text-lg text-gray-700 hover:text-indigo-600 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <img
@@ -201,7 +212,7 @@ const AppBar = () => {
 
                   <a
                     href="#"
-                    className="flex items-center space-x-3 text-gray-700 hover:text-indigo-600"
+                    className="flex items-center space-x-3 text-base sm:text-lg text-gray-700 hover:text-indigo-600 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <MagnifyingGlassIcon className="h-6 w-6" />
@@ -210,7 +221,7 @@ const AppBar = () => {
 
                   <a
                     href="/cart"
-                    className="flex items-center space-x-3 text-gray-700 hover:text-indigo-600"
+                    className="flex items-center space-x-3 text-base sm:text-lg text-gray-700 hover:text-indigo-600 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <ShoppingBagIcon className="h-6 w-6" />
