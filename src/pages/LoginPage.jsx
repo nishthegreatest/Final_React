@@ -25,38 +25,54 @@ export default function LoginPage() {
   };
 
   return (
-    <div
-      className="w-full h-1/2 flex justify-center align-content-center my-3 "
-      style={{ height: 300 }}
-    >
-      <form onSubmit={handleLogin} className="w-[50%] border-2 p-5 ">
-        <h2>Login</h2>
-        <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="w-full my-3.5 h-12 px-1.5"
-          placeholder="Enter Username "
-        />
-        <input
-          value={password}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full h-12 px-1.5"
-          placeholder="Enter Password"
-        />
-        <button
-          type="submit"
-          className="bg-sky-500 mt-3.5 px-5 py-2 rounded-[5px]"
-        >
-          Login
-        </button>
-        <button
-          type="#"
-          className="outline-blue-600 border-sky-500 border-2 mt-3.5 px-5 py-2 rounded-[5px] mx-2"
-        >
-          Register
-        </button>
-        {error && <p>{error}</p>}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-sky-400 to-indigo-500 p-4">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md space-y-6"
+      >
+        <h2 className="text-3xl font-bold text-center text-gray-800">Login</h2>
+        <p className="text-center text-gray-500">
+          Enter your credentials to access your account
+        </p>
+
+        <div className="flex flex-col space-y-4">
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
+            placeholder="Enter Username"
+          />
+          <input
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
+            placeholder="Enter Password"
+          />
+        </div>
+
+        {error && (
+          <p className="text-red-500 text-center font-medium">{error}</p>
+        )}
+
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <button
+            type="submit"
+            className="bg-sky-500 hover:bg-sky-600 transition-all text-white font-semibold py-3 rounded-lg w-full sm:w-auto"
+          >
+            Login
+          </button>
+          <button
+            type="#"
+            className="border border-sky-500 text-sky-500 hover:bg-sky-50 transition-all font-semibold py-3 rounded-lg w-full sm:w-auto"
+          >
+            Register
+          </button>
+        </div>
+
+        <p className="text-center text-gray-400 text-sm mt-4">
+          © 2025 YourCompany. All rights reserved.
+        </p>
       </form>
     </div>
   );
