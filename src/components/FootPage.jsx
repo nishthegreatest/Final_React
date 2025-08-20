@@ -2,21 +2,21 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const FootPage = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 px-6 py-12 relative">
+    <footer className="bg-gray-900 text-gray-300 px-6 pt-12 pb-8 relative">
       {/* Gradient border on top */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600"></div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center place-items-center">
         {/* Brand */}
         <div>
           <h1 className="text-white text-3xl font-extrabold mb-4 tracking-wide">
             MyShop
           </h1>
-          <p className="text-sm leading-relaxed text-gray-400">
+          <p className="text-sm text- leading-relaxed text-gray-400 max-w-xs mx-auto">
             Discover the best deals and latest trends in fashion, electronics,
             and more.
           </p>
-          <div className="flex gap-4 mt-6">
+          <div className="flex gap-4 mt-6 justify-center">
             <a
               href="https://facebook.com"
               target="_blank"
