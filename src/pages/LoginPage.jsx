@@ -58,20 +58,20 @@ export default function LoginPage() {
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button
             type="submit"
-            className="bg-sky-500 hover:bg-sky-600 transition-all text-white font-semibold py-3 rounded-lg w-full sm:w-auto"
+            className="bg-sky-500 hover:bg-sky-600 transition-all text-white font-semibold py-3 px-6 rounded-lg w-full sm:w-auto"
           >
             Login
           </button>
           <button
             type="#"
-            className="border border-sky-500 text-sky-500 hover:bg-sky-50 transition-all font-semibold py-3 rounded-lg w-full sm:w-auto"
+            className="border border-sky-500 text-sky-500 hover:bg-sky-50 transition-all font-semibold py-3 px-6 rounded-lg w-full sm:w-auto"
           >
             Register
           </button>
         </div>
 
         <p className="text-center text-gray-400 text-sm mt-4">
-          © 2025 YourCompany. All rights reserved.
+          © 2025 Danish Store. All rights reserved.
         </p>
       </form>
     </div>
