@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api";
@@ -27,38 +26,58 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="w-[75%] h-full p-4 m-auto flex gap-20 flex-col">
+    <div className="w-[90%] lg:w-[75%] mx-auto py-30">
       {detail.image ? (
-        <div className="flex gap-20">
-          <img src={detail.image} alt={detail.title} className="w-64 h-auto" />
-          <div>
-            <h1 className="text-2xl font-bold mt-4">{detail.title}</h1>
-            <p className="mt-2 text-gray-800">{detail.description}</p>
-            <p className="mt-2 font-semibold text-lg">{detail.price} $</p>
-            <div>
-              <p>⭐⭐⭐⭐⭐ {detail.rating.rate}</p>
-              <p>{detail.rating.count} views</p>
+        <div className="flex flex-col lg:flex-row gap-12 bg-white shadow-lg rounded-xl p-8">
+          {/* Product Image */}
+          <div className="flex justify-center items-center bg-gray-100 rounded-lg p-6">
+            <img
+              src={detail.image}
+              alt={detail.title}
+              className="w-64 h-64 object-contain transition-transform duration-300 hover:scale-105"
+            />
+          </div>
+
+          {/* Product Info */}
+          <div className="flex-1">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              {detail.title}
+            </h1>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              {detail.description}
+            </p>
+
+            <p className="text-2xl font-semibold text-indigo-600 mb-2">
+              ${detail.price}
+            </p>
+
+            <div className="flex items-center gap-4 text-sm text-gray-600 mb-6">
+              <p className="flex items-center">
+                ⭐⭐⭐⭐⭐ <span className="ml-2">{detail.rating?.rate}</span>
+              </p>
+              <p>{detail.rating?.count} reviews</p>
             </div>
 
-            <div className="flex gap-4 mt-5">
+            {/* Buttons */}
+            <div className="flex gap-4">
               <button
                 onClick={() => navigate("/")}
-                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition"
+                className="px-5 py-2 rounded-md bg-gray-500 text-white shadow hover:bg-gray-600 transition-colors"
               >
                 Cancel
               </button>
 
               <button
                 onClick={handleOrder}
-                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+                className="px-5 py-2 rounded-md bg-green-600 text-white shadow hover:bg-green-700 transition-colors"
               >
-                Order
+                Order Now
               </button>
             </div>
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <p className="text-center text-gray-500 text-lg">Loading...</p>
       )}
     </div>
   );

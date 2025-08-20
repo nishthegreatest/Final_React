@@ -2,127 +2,105 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const FootPage = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 px-6 py-10">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <footer className="bg-gray-900 text-gray-300 px-6 py-12 relative">
+      {/* Gradient border on top */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600"></div>
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
         {/* Brand */}
         <div>
-          <h1 className="text-white text-2xl font-bold mb-4">MyShop</h1>
-          <p className="text-sm">
+          <h1 className="text-white text-3xl font-extrabold mb-4 tracking-wide">
+            MyShop
+          </h1>
+          <p className="text-sm leading-relaxed text-gray-400">
             Discover the best deals and latest trends in fashion, electronics,
             and more.
           </p>
-          <div className="flex gap-4 mt-4">
+          <div className="flex gap-4 mt-6">
             <a
               href="https://facebook.com"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-white"
+              className="p-2 rounded-full bg-gray-800 hover:bg-indigo-600 transition-colors"
             >
-              <FaFacebook size={20} />
+              <FaFacebook size={18} />
             </a>
             <a
               href="https://instagram.com"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-white"
+              className="p-2 rounded-full bg-gray-800 hover:bg-pink-500 transition-colors"
             >
-              <FaInstagram size={20} />
+              <FaInstagram size={18} />
             </a>
             <a
               href="https://twitter.com"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-white"
+              className="p-2 rounded-full bg-gray-800 hover:bg-sky-500 transition-colors"
             >
-              <FaTwitter size={20} />
+              <FaTwitter size={18} />
             </a>
           </div>
         </div>
 
         {/* Shop Links */}
         <div>
-          <h2 className="text-white text-lg font-semibold mb-3">Shop</h2>
+          <h2 className="text-white text-lg font-semibold mb-4">Shop</h2>
           <ul className="space-y-2 text-sm">
-            <li>
-              <a href="#" className="hover:text-white">
-                Men
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white">
-                Women
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white">
-                Kids
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white">
-                Electronics
-              </a>
-            </li>
+            {["Men", "Women", "Kids", "Electronics"].map((item) => (
+              <li key={item}>
+                <a
+                  href="#"
+                  className="hover:text-indigo-400 transition-colors duration-200"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Support Links */}
         <div>
-          <h2 className="text-white text-lg font-semibold mb-3">Support</h2>
+          <h2 className="text-white text-lg font-semibold mb-4">Support</h2>
           <ul className="space-y-2 text-sm">
-            <li>
-              <a href="#" className="hover:text-white">
-                FAQs
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white">
-                Shipping
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white">
-                Returns
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white">
-                Contact Us
-              </a>
-            </li>
+            {["FAQs", "Shipping", "Returns", "Contact Us"].map((item) => (
+              <li key={item}>
+                <a
+                  href="#"
+                  className="hover:text-indigo-400 transition-colors duration-200"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Company Links */}
         <div>
-          <h2 className="text-white text-lg font-semibold mb-3">Company</h2>
+          <h2 className="text-white text-lg font-semibold mb-4">Company</h2>
           <ul className="space-y-2 text-sm">
-            <li>
-              <a href="#" className="hover:text-white">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white">
-                Careers
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white">
-                Press
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white">
-                Blog
-              </a>
-            </li>
+            {["About", "Careers", "Press", "Blog"].map((item) => (
+              <li key={item}>
+                <a
+                  href="#"
+                  className="hover:text-indigo-400 transition-colors duration-200"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
 
-      <div className="text-center text-xs text-gray-500 mt-10">
-        © {new Date().getFullYear()} MyShop. All rights reserved.
+      {/* Bottom note */}
+      <div className="text-center text-xs text-gray-500 mt-12 border-t border-gray-800 pt-6">
+        © {new Date().getFullYear()}{" "}
+        <span className="font-semibold text-gray-400">MyShop</span>. All rights
+        reserved.
       </div>
     </footer>
   );

@@ -32,7 +32,7 @@ const Appbar = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white shadow-md sticky top-0 z-50">
       <header className="relative bg-white">
         <nav
           aria-label="Top"
@@ -46,21 +46,21 @@ const Appbar = () => {
                   <img
                     alt="Logo"
                     src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                    className="h-8 w-auto"
+                    className="h-9 w-auto hover:scale-110 transition-transform duration-200"
                   />
                 </NavLink>
               </div>
 
               {/* Flyout menus */}
-              <PopoverGroup className="hidden lg:ml-8 lg:block lg:self-stretch">
-                <div className="flex h-full space-x-8 items-center">
-                  {/* Home link with similar styling */}
+              <PopoverGroup className="hidden lg:ml-10 lg:block lg:self-stretch">
+                <div className="flex h-full space-x-10 items-center">
+                  {/* Home link */}
                   <NavLink
                     to="/"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-indigo-600 text-sm font-medium"
-                        : "text-gray-700 text-sm font-medium hover:text-gray-900"
+                        ? "text-indigo-600 text-sm font-semibold border-b-2 border-indigo-600 pb-1"
+                        : "text-gray-700 text-sm font-medium hover:text-indigo-500 transition-colors"
                     }
                   >
                     Home
@@ -69,11 +69,13 @@ const Appbar = () => {
                   {/* Category links */}
                   {category.map((cat, index) => (
                     <Popover key={index} className="flex">
-                      <PopoverButton className="group relative flex items-center justify-center text-sm font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-800 data-open:text-indigo-600">
+                      <PopoverButton className="group relative flex items-center justify-center text-sm font-medium text-gray-700 hover:text-indigo-500 transition-colors duration-200 ease-out">
                         <NavLink
                           to={`/category/${encodeURIComponent(cat)}`}
                           className={({ isActive }) =>
-                            isActive ? "text-indigo-600" : "hover:text-gray-800"
+                            isActive
+                              ? "text-indigo-600 border-b-2 border-indigo-600 pb-1"
+                              : "hover:text-indigo-500"
                           }
                         >
                           {cat}
@@ -90,10 +92,9 @@ const Appbar = () => {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
                   <button
                     onClick={onLogout}
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                    className="rounded-md px-4 py-2 text-sm font-medium text-gray-700 hover:text-white hover:bg-indigo-600 transition-colors"
                   >
                     Logout
                   </button>
@@ -102,7 +103,7 @@ const Appbar = () => {
                 <div className="hidden lg:ml-8 lg:flex">
                   <a
                     href="#"
-                    className="flex items-center text-gray-700 hover:text-gray-800"
+                    className="flex items-center text-gray-700 hover:text-indigo-500 transition-colors"
                   >
                     <img
                       alt=""
@@ -115,7 +116,10 @@ const Appbar = () => {
 
                 {/* Search */}
                 <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
+                  <a
+                    href="#"
+                    className="p-2 text-gray-400 hover:text-indigo-500 rounded-full hover:bg-gray-100 transition-colors"
+                  >
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon
                       aria-hidden="true"
@@ -128,13 +132,13 @@ const Appbar = () => {
                 <div className="ml-4 flow-root lg:ml-6">
                   <NavLink
                     to="/cart"
-                    className="group -m-2 flex items-center p-2"
+                    className="group -m-2 flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors"
                   >
                     <ShoppingBagIcon
                       aria-hidden="true"
-                      className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-gray-500"
+                      className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-500 transition-colors"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-indigo-600 transition-colors">
                       0
                     </span>
                   </NavLink>
