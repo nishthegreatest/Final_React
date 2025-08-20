@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import { useCart } from "../contexts/CartContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   Bars3Icon,
@@ -11,6 +12,7 @@ import api from "../api";
 
 const Appbar = () => {
   const { logout } = useAuth();
+  const { cartCount } = useCart();
   const navigate = useNavigate();
   const [category, setCategory] = useState([]);
 
@@ -139,7 +141,7 @@ const Appbar = () => {
                       className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-500 transition-colors"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-indigo-600 transition-colors">
-                      0
+                      {cartCount}
                     </span>
                   </NavLink>
                 </div>
