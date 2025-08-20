@@ -12,8 +12,7 @@ export default function CartProvider({ children }) {
       const cartData = response.data;
       
       if (cartData.length > 0) {
-        const totalItems = cartData[0].products.reduce((sum, item) => sum + item.quantity, 0);
-        setCartCount(totalItems);
+        setCartCount(cartData[0].products.length);
       } else {
         setCartCount(0);
       }
