@@ -27,23 +27,23 @@ const CartPage = () => {
   }, []);
 
   return (
-    <div className="w-[90%] lg:w-[75%] mx-auto m-12 mb-20">
+    <div className="w-full max-w-7xl mx-auto px-4 py-6 sm:py-8 lg:py-12 sm:px-6 lg:px-8 mb-20">
       {/* Page Title */}
-      <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800 text-center">
         🛍️ Your Shopping Cart
       </h2>
 
       {/* Table Container */}
-      <div className="overflow-x-auto bg-white shadow-xl rounded-2xl border border-gray-200">
+      <div className="overflow-x-auto bg-white shadow-xl rounded-lg sm:rounded-2xl border border-gray-200">
         <table className="w-full border-collapse">
           <thead className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
             <tr>
-              <th className="px-6 py-4 text-left font-semibold">Title</th>
-              <th className="px-6 py-4 text-center font-semibold">Quantity</th>
-              <th className="px-6 py-4 text-center font-semibold">Price</th>
-              <th className="px-6 py-4 text-center font-semibold">Total</th>
-              <th className="px-6 py-4 text-center font-semibold">Image</th>
-              <th className="px-6 py-4 text-center font-semibold">Action</th>
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-semibold text-sm sm:text-base">Title</th>
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-center font-semibold text-sm sm:text-base">Qty</th>
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-center font-semibold text-sm sm:text-base">Price</th>
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-center font-semibold text-sm sm:text-base">Total</th>
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-center font-semibold text-sm sm:text-base hidden sm:table-cell">Image</th>
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-center font-semibold text-sm sm:text-base">Action</th>
             </tr>
           </thead>
 
@@ -61,7 +61,7 @@ const CartPage = () => {
               <tr>
                 <td
                   colSpan="6"
-                  className="text-center py-10 text-gray-500 text-lg"
+                  className="text-center py-8 sm:py-10 text-gray-500 text-base sm:text-lg px-4"
                 >
                   🛒 Your cart is empty
                 </td>

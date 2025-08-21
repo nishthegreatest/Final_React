@@ -6,8 +6,9 @@ import {
   Bars3Icon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { Popover, PopoverButton, PopoverGroup } from "@headlessui/react";
+import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from "@headlessui/react";
 import api from "../api";
 
 const Appbar = () => {
@@ -15,6 +16,7 @@ const Appbar = () => {
   const { cartCount } = useCart();
   const navigate = useNavigate();
   const [category, setCategory] = useState([]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const getAllCategory = async () => {
@@ -37,9 +39,87 @@ const Appbar = () => {
   return (
     <div className="bg-white shadow-md sticky top-0 z-50">
       <header className="relative bg-white">
+        {/* Mobile menu */}
+        <Popover className="lg:hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+            <div className="flex items-center">
+              <NavLink to="/">
+                <img
+                  alt="Logo"
+                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+                  className="h-8 w-auto"
+                />
+              </NavLink>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              {/* Mobile Cart */}
+              <NavLink
+                to="/cart"
+                className="relative p-2 text-gray-400 hover:text-indigo-500"
+              >
+                <ShoppingBagIcon className="h-6 w-6" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-indigo-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </NavLink>
+              
+              {/* Mobile menu button */}
+              <PopoverButton className="p-2 text-gray-400 hover:text-indigo-500">
+                <Bars3Icon className="h-6 w-6" />
+              </PopoverButton>
+            </div>
+          </div>
+
+          <PopoverPanel className="absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-200 z-50">
+            <div className="px-4 py-6 space-y-4">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `block px-3 py-2 text-base font-medium rounded-md ${
+                    isActive
+                      ? "text-indigo-600 bg-indigo-50"
+                      : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50"
+                  }`
+                }
+              >
+                Home
+              </NavLink>
+              
+              {Array.isArray(category) && category.map((cat, index) => (
+                <NavLink
+                  key={index}
+                  to={`/category/${encodeURIComponent(cat)}`}
+                  className={({ isActive }) =>
+                    `block px-3 py-2 text-base font-medium rounded-md capitalize ${
+                      isActive
+                        ? "text-indigo-600 bg-indigo-50"
+                        : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50"
+                    }`
+                  }
+                >
+                  {cat}
+                </NavLink>
+              ))}
+              
+              <div className="border-t border-gray-200 pt-4">
+                <button
+                  onClick={onLogout}
+                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-md"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </PopoverPanel>
+        </Popover>
+
+        {/* Desktop menu */}
         <nav
           aria-label="Top"
-          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+          className="hidden lg:block mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
         >
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center">
@@ -70,15 +150,15 @@ const Appbar = () => {
                   </NavLink>
 
                   {/* Category links */}
-                  {category.map((cat, index) => (
+                  {Array.isArray(category) && category.map((cat, index) => (
                     <Popover key={index} className="flex">
                       <PopoverButton className="group relative flex items-center justify-center text-sm font-medium text-gray-700 hover:text-indigo-500 transition-colors duration-200 ease-out">
                         <NavLink
                           to={`/category/${encodeURIComponent(cat)}`}
                           className={({ isActive }) =>
                             isActive
-                              ? "text-indigo-600 border-b-2 border-indigo-600 pb-1"
-                              : "hover:text-indigo-500"
+                              ? "text-indigo-600 border-b-2 border-indigo-600 pb-1 capitalize"
+                              : "hover:text-indigo-500 capitalize"
                           }
                         >
                           {cat}
@@ -135,15 +215,17 @@ const Appbar = () => {
                 <div className="ml-4 flow-root lg:ml-6">
                   <NavLink
                     to="/cart"
-                    className="group -m-2 flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors"
+                    className="group -m-2 flex items-center p-2 rounded-md hover:bg-gray-100 transition-colors relative"
                   >
                     <ShoppingBagIcon
                       aria-hidden="true"
                       className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-500 transition-colors"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-indigo-600 transition-colors">
-                      {cartCount}
-                    </span>
+                    {cartCount > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-indigo-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        {cartCount}
+                      </span>
+                    )}
                   </NavLink>
                 </div>
               </div>
