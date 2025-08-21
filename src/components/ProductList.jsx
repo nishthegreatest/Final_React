@@ -45,7 +45,7 @@ const ProductList = () => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((product) => (
+          {Array.isArray(products) && products.map((product) => (
             <div
               key={product.id}
               className="group bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow p-4 flex flex-col"
