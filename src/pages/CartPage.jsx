@@ -7,11 +7,19 @@ const CartPage = () => {
 
   useEffect(() => {
     const fetchCart = async () => {
-      const response = await api.get("/carts");
-      const cartData = response.data;
+      try {
+        // Use a specific user's cart
+        const response = await api.get("/carts/user/1");
+        const cartData = response.data;
 
-      if (cartData.length > 0) {
-        setCart(cartData[0].products);
+        if (Array.isArray(cartData) && cartData.length > 0) {
+          setCart(cartData[0].products || []);
+        } else {
+          setCart([]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch cart:", error);
+        setCart([]);
       }
     };
 

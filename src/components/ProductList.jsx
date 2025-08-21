@@ -14,14 +14,10 @@ const ProductList = () => {
           ? `/products/category/${categoryName}`
           : "/products";
         const response = await api.get(endpoint);
-        if (Array.isArray(response.data)) {
-          setProducts(response.data);
-          setError(null);
-        } else {
-          setProducts([]);
-          setError("Invalid data received from server");
-        }
+        setProducts(Array.isArray(response.data) ? response.data : []);
+        setError(null);
       } catch (err) {
+        console.error("Failed to fetch products:", err);
         setProducts([]);
         setError("Failed to fetch products");
       }

@@ -20,11 +20,7 @@ const Appbar = () => {
     const getAllCategory = async () => {
       try {
         const response = await api.get("/products/categories");
-        if (Array.isArray(response.data)) {
-          setCategory(response.data);
-        } else {
-          setCategory([]);
-        }
+        setCategory(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error("Failed to fetch categories", error);
         setCategory([]);

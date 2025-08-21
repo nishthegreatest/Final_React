@@ -8,11 +8,18 @@ export default function CartProvider({ children }) {
 
   const fetchCartCount = async () => {
     try {
-      const response = await api.get("/carts");
+      // Use a specific user's cart since fakestoreapi requires user ID
+      const response = await api.get("/carts/user/1");
       const cartData = response.data;
       
-      if (Array.isArray(cartData) && cartData.length > 0 && cartData[0] && Array.isArray(cartData[0].products)) {
-        setCartCount(cartData[0].products.length);
+      if (Array.isArray(cartData) && cartData.length > 0) {
+        const totalItems = cartData.reduce((total, cart) => {
+          if (cart && Array.isArray(cart.products)) {
+            return total + cart.products.length;
+          }
+          return total;
+        }, 0);
+        setCartCount(totalItems);
       } else {
         setCartCount(0);
       }

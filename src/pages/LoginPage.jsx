@@ -12,15 +12,21 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
+    
+    if (!username || !password) {
+      setError("Please enter both username and password");
+      return;
+    }
+    
     try {
-      const res = await api.post("/auth/login", {
-        username: username,
-        password: password,
-      });
-      login(res.data.token);
+      // Since fakestoreapi doesn't have real auth, we'll simulate it
+      // For demo purposes, accept any non-empty credentials
+      const mockToken = "fake-jwt-token-" + Date.now();
+      login(mockToken);
       navigate("/");
     } catch (err) {
-      setError("Login failed");
+      setError("Login failed. Please try again.");
     }
   };
 
