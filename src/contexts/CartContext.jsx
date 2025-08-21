@@ -11,7 +11,7 @@ export default function CartProvider({ children }) {
       const response = await api.get("/carts");
       const cartData = response.data;
       
-      if (cartData.length > 0) {
+      if (Array.isArray(cartData) && cartData.length > 0 && cartData[0] && Array.isArray(cartData[0].products)) {
         setCartCount(cartData[0].products.length);
       } else {
         setCartCount(0);
