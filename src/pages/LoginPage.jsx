@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import Swal from 'sweetalert2';
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -26,7 +27,14 @@ export default function LoginPage() {
       login(mockToken);
       navigate("/");
     } catch (err) {
-      setError("Login failed. Please try again.");
+      Swal.fire({
+        title: 'Login Failed',
+        text: 'Please check your credentials and try again.',
+        icon: 'error',
+        confirmButtonText: 'Try Again',
+        confirmButtonColor: '#ef4444'
+      });
+      setError("");
     }
   };
 

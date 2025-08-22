@@ -1,5 +1,6 @@
 import React from "react";
 import { useCart } from "../contexts/CartContext";
+import Swal from 'sweetalert2';
 
 const CartPage = () => {
   const { cartItems, updateQuantity, removeFromCart, getTotalPrice } = useCart();
@@ -13,8 +14,21 @@ const CartPage = () => {
   };
 
   const handleOrder = (item) => {
-    alert(`Ordering: ${item.title} (Quantity: ${item.quantity})`);
-    // Here you would typically integrate with a payment system
+    Swal.fire({
+      title: 'Order Placed!',
+      html: `
+        <div class="text-left">
+          <p><strong>Item:</strong> ${item.title}</p>
+          <p><strong>Quantity:</strong> ${item.quantity}</p>
+          <p><strong>Total:</strong> $${(item.price * item.quantity).toFixed(2)}</p>
+        </div>
+      `,
+      icon: 'success',
+      confirmButtonText: 'Continue Shopping',
+      confirmButtonColor: '#10b981',
+      timer: 3000,
+      timerProgressBar: true
+    });
   };
 
   return (

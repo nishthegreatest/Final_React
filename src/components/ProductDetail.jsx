@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api";
 import { useCart } from "../contexts/CartContext";
+import Swal from 'sweetalert2';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -25,7 +26,15 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     addToCart(detail, quantity);
-    alert(`Added ${quantity} ${detail.title} to cart!`);
+    Swal.fire({
+      title: 'Added to Cart!',
+      text: `${quantity} ${detail.title} added to your cart`,
+      icon: 'success',
+      confirmButtonText: 'Continue Shopping',
+      confirmButtonColor: '#4f46e5',
+      timer: 2000,
+      timerProgressBar: true
+    });
   };
 
   return (
