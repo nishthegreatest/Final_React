@@ -34,8 +34,12 @@ const Appbar = () => {
   const onLogout = () => {
     logout();
     navigate("/login");
+    setMobileMenuOpen(false);
   };
 
+  const handleMobileMenuClose = () => {
+    setMobileMenuOpen(false);
+  };
   return (
     <div className="bg-white shadow-md sticky top-0 z-50">
       <header className="relative bg-white">
@@ -43,7 +47,7 @@ const Appbar = () => {
         <Popover className="lg:hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
             <div className="flex items-center">
-              <NavLink to="/">
+              <NavLink to="/" onClick={handleMobileMenuClose}>
                 <img
                   alt="Logo"
                   src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
@@ -56,6 +60,7 @@ const Appbar = () => {
               {/* Mobile Cart */}
               <NavLink
                 to="/cart"
+                onClick={handleMobileMenuClose}
                 className="relative p-2 text-gray-400 hover:text-indigo-500"
               >
                 <ShoppingBagIcon className="h-6 w-6" />
@@ -67,8 +72,15 @@ const Appbar = () => {
               </NavLink>
               
               {/* Mobile menu button */}
-              <PopoverButton className="p-2 text-gray-400 hover:text-indigo-500">
-                <Bars3Icon className="h-6 w-6" />
+              <PopoverButton 
+                className="p-2 text-gray-400 hover:text-indigo-500"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? (
+                  <XMarkIcon className="h-6 w-6" />
+                ) : (
+                  <Bars3Icon className="h-6 w-6" />
+                )}
               </PopoverButton>
             </div>
           </div>
@@ -77,6 +89,7 @@ const Appbar = () => {
             <div className="px-4 py-6 space-y-4">
               <NavLink
                 to="/"
+                onClick={handleMobileMenuClose}
                 className={({ isActive }) =>
                   `block px-3 py-2 text-base font-medium rounded-md ${
                     isActive
@@ -92,6 +105,7 @@ const Appbar = () => {
                 <NavLink
                   key={index}
                   to={`/category/${encodeURIComponent(cat)}`}
+                  onClick={handleMobileMenuClose}
                   className={({ isActive }) =>
                     `block px-3 py-2 text-base font-medium rounded-md capitalize ${
                       isActive
