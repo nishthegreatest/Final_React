@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api";
+import { useCart } from "../contexts/CartContext";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [detail, setDetail] = useState({});
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -20,9 +23,9 @@ const ProductDetail = () => {
     fetchDetail();
   }, [id]);
 
-  const handleOrder = () => {
-    alert(`Ordering product: ${detail.title}`);
-    // Or navigate somewhere, e.g., navigate("/order-confirmation");
+  const handleAddToCart = () => {
+    addToCart(detail, quantity);
+    alert(`Added ${quantity} ${detail.title} to cart!`);
   };
 
   return (
@@ -58,20 +61,32 @@ const ProductDetail = () => {
               <p>{detail.rating?.count} reviews</p>
             </div>
 
+            {/* Quantity Selector */}
+            <div className="flex items-center gap-4 mb-4 sm:mb-6">
+              <label className="text-sm font-medium text-gray-700">Quantity:</label>
+              <input
+                type="number"
+                min="1"
+                value={quantity}
+                onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+                className="w-20 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
+
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button
                 onClick={() => navigate("/")}
                 className="px-5 py-2 rounded-md bg-gray-500 text-white shadow hover:bg-gray-600 transition-colors text-center"
               >
-                Cancel
+                Back to Products
               </button>
 
               <button
-                onClick={handleOrder}
-                className="px-5 py-2 rounded-md bg-green-600 text-white shadow hover:bg-green-700 transition-colors text-center"
+                onClick={handleAddToCart}
+                className="px-5 py-2 rounded-md bg-indigo-600 text-white shadow hover:bg-indigo-700 transition-colors text-center"
               >
-                Order Now
+                Add to Cart
               </button>
             </div>
           </div>
